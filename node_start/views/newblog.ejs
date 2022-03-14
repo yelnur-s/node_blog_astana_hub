@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Добавление нового блога</title>
+    <%- include('partials/head.ejs') %>
+</head>
+<body>	
+    <%- include('partials/header.ejs') %>
+	<section class="container page">
+		<div class="page-block">
+
+			<div class="page-header">
+				<h2>Новый блог</h2>
+			</div>
+			
+			<form class="form" action="/api/blog/add" method="POST" enctype="multipart/form-data">
+				
+			<fieldset class="fieldset">
+				<input class="input" type="text" name="title" placeholder="Заголовок">
+			</fieldset>
+
+			<fieldset class="fieldset">
+				<select name="category_id" id="" class="input">
+					<option value='1'>Category</option>
+
+				</select>
+			</fieldset>
+			<!-- <input type="file" name="image">		 -->
+			<fieldset class="fieldset">
+				<button class="button button-yellow input-file">
+					<input type="file" name="image">	
+					Выберите картинку
+				</button>
+			</fieldset>
+				
+			<fieldset class="fieldset">
+				<textarea class="input input-textarea" name="description" id="" cols="30" rows="10" placeholder="Описание"></textarea>
+			</fieldset>
+			<fieldset class="fieldset">
+				<button class="button" type="submit">Сохранить</button>
+			</fieldset>
+			</form>
+			<p class="text-danger"> Заголовок и Описание не могут быть пустыми!</p>
+		</div>
+
+	</section>
+	
+	
+
+	
+	
+</body>
+</html>

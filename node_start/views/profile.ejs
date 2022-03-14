@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Профиль</title>
+
+    <%- include('partials/head.ejs') %>
+
+</head>
+<body data-baseurl="<?=$BASE_URL?>">
+
+<%- include('partials/header.ejs') %>
+
+<section class="container page">
+	<div class="page-content">
+		<div class="page-header">
+			<h2>Мои блоги</h2>
+			<a class="button" href="/newblog">Новый блог</a>
+		</div>
+
+		<div class="blogs">
+            <div class="blog-item">
+				<img class="blog-item--img" src="" alt="">
+				<div class="blog-header">
+					<h3> <a href="blog-details?id=">Title</a> </h3>
+				</div>
+				<p class="blog-desc">
+					Descriprion
+				</p>
+
+				<div class="blog-info">
+					<span class="link">
+						<img src="/images/date.svg" alt="">
+						21.01.2022
+					</span>
+					<span class="link">
+						<img src=/images/visibility.svg" alt="">
+						21
+					</span>
+					<a class="link">
+						<img src="/images/message.svg" alt="">
+						4
+					</a>
+					<span class="link">
+						<img src="/images/forums.svg" alt="">
+                        Category
+					</span>
+					<a class="link" href="/profile?nickname=">
+						<img src="/images/person.svg" alt="">
+						
+						nickname
+
+
+					</a>
+				</div>
+			</div>
+			<h3>0 blogs</h3>
+		</div>
+	</div>
+	<div class="page-info">
+		<div class="user-profile">
+			<img class="user-profile--ava" src="/images/avatar.png" alt="">
+
+			<h1>Елнур Сеитжанов</h1>
+			<h2>В основном пишу про веб - разработку, на React & Redux</h2>
+			<p>285 постов за все время</p>
+			<a href="" class="button">Редактировать</a>
+
+			<a href="api/user/signout" class="button button-danger">Выход</a>
+		</div>
+	</div>
+</section>
+
+</body>
+</html>
