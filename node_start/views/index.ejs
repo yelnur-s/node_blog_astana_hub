@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Главная</title>
+    <%- include('partials/head.ejs') %>
+</head>
+<body>
+    <%- include('partials/header.ejs') %>
+
+<section class="container page">
+	<div class="page-content">
+			<h2 class="page-title">Блоги по программированию</h2>
+			<p class="page-desc">Популярные и лучшие публикации по программированию для начинающих
+ и профессиональных программистов и IT-специалистов.</p>
+
+		<div class="blogs">
+
+			<div class="blog-item">
+				<img class="blog-item--img" src="" alt="">
+				<div class="blog-header">
+					<h3> <a href="blog-details?id=">Title</a> </h3>
+				</div>
+				<p class="blog-desc">
+					Descriprion
+				</p>
+
+				<div class="blog-info">
+					<span class="link">
+						<img src="/images/date.svg" alt="">
+						21.01.2022
+					</span>
+					<span class="link">
+						<img src=/images/visibility.svg" alt="">
+						21
+					</span>
+					<a class="link">
+						<img src="/images/message.svg" alt="">
+						4
+					</a>
+					<span class="link">
+						<img src="/images/forums.svg" alt="">
+                        Category
+					</span>
+					<a class="link" href="/profile?nickname=">
+						<img src="/images/person.svg" alt="">
+						
+						nickname
+
+
+					</a>
+				</div>
+			</div>
+			<h3>0 blogs</h3>
+		
+
+		</div>
+	</div>
+    <%- include('partials/categories.ejs') %>
+</section>	
+</body>
+</html>
