@@ -14,10 +14,10 @@
 			<div class="page-header">
 				<h2>Редактировать блог</h2>
 			</div>
-			<form class="form" action="api/blog/update?id=" method="POST" enctype="multipart/form-data">
-				
+			<form class="form" onsubmit="onSubmit(this, event)">
+				<input type="hidden" name="_id" value="<%=blog._id %>">
 				<fieldset class="fieldset">
-					<input class="input" type="text" name="title" placeholder="Заголовок" value="asd">
+					<input class="input" type="text" name="title" placeholder="Заголовок" value="<%=blog.title %>">
 				</fieldset>
 
 				<fieldset class="fieldset">
@@ -35,7 +35,7 @@
 				</fieldset>
 					
 				<fieldset class="fieldset">
-					<textarea class="input input-textarea" name="description" id="" cols="30" rows="10" placeholder="Описание">asdasd</textarea>
+					<textarea class="input input-textarea" name="description" id="" cols="30" rows="10" placeholder="Описание"><%=blog.description %></textarea>
 				</fieldset>
 				<fieldset class="fieldset">
 					<button class="button" type="submit">Сохранить</button>
@@ -48,5 +48,8 @@
 		</div>
 
 	</section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js"></script>
+    <script src="/js/editblog.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
     <%- include('partials/head.ejs') %>
 
 </head>
-<body data-baseurl="<?=$BASE_URL?>">
+<body data-baseurl="">
 
 <%- include('partials/header.ejs') %>
 
@@ -14,26 +14,56 @@
 	<div class="page-content">
 		<div class="page-header">
 			<h2>Мои блоги</h2>
+			<%
+						if(currentUser.nickname === nickname) {
+					%>
 			<a class="button" href="/newblog">Новый блог</a>
+
+			<%
+						}
+			%>
 		</div>
 
 		<div class="blogs">
+
+            <% 
+                blogs.forEach(function(blog) {
+            %>
+
             <div class="blog-item">
-				<img class="blog-item--img" src="" alt="">
+				<img class="blog-item--img" src="<%=blog.img %>" alt="">
 				<div class="blog-header">
-					<h3> <a href="blog-details?id=">Title</a> </h3>
+					<h3> <a href="blog-details?id="> <%=blog.title %> </a> </h3>
+
+					<%
+						if(currentUser.nickname === nickname) {
+					%>
+                    <span class="link">
+                        <img src="/images/dots.svg" alt="">
+                        Еще
+        
+                        <ul class="dropdown">
+                            <li> <a href="/editblog?id=<%=blog._id %>">Редактировать</a> </li>
+                            <li><a onclick="deleteBlog('<%=blog._id %>')" class="danger">Удалить</a></li>
+                        </ul>
+                    </span>
+					<%
+					}
+					%>
+
+
 				</div>
 				<p class="blog-desc">
-					Descriprion
+                    <%=blog.description %>
 				</p>
 
 				<div class="blog-info">
 					<span class="link">
 						<img src="/images/date.svg" alt="">
-						21.01.2022
+                        <%=blog.date %>
 					</span>
 					<span class="link">
-						<img src=/images/visibility.svg" alt="">
+						<img src="/images/visibility.svg" alt="">
 						21
 					</span>
 					<a class="link">
@@ -47,12 +77,18 @@
 					<a class="link" href="/profile?nickname=">
 						<img src="/images/person.svg" alt="">
 						
-						nickname
+						<%=nickname %>
 
 
 					</a>
 				</div>
 			</div>
+
+
+
+            <%  
+            })
+            %>
 			<h3>0 blogs</h3>
 		</div>
 	</div>
@@ -65,10 +101,12 @@
 			<p>285 постов за все время</p>
 			<a href="" class="button">Редактировать</a>
 
-			<a href="api/user/signout" class="button button-danger">Выход</a>
+			<a href="/api/auth/signout" class="button button-danger">Выход</a>
 		</div>
 	</div>
 </section>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js"></script>
+<script src="/js/profile.js"></script>
 </body>
 </html>

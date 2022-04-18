@@ -15,41 +15,48 @@
 
 		<div class="blogs">
 
-			<div class="blog-item">
-				<img class="blog-item--img" src="" alt="">
-				<div class="blog-header">
-					<h3> <a href="blog-details?id=">Title</a> </h3>
-				</div>
-				<p class="blog-desc">
-					Descriprion
-				</p>
+			<% 
+			blogs.forEach(function(blog) {
+		%>
 
-				<div class="blog-info">
-					<span class="link">
-						<img src="/images/date.svg" alt="">
-						21.01.2022
-					</span>
-					<span class="link">
-						<img src=/images/visibility.svg" alt="">
-						21
-					</span>
-					<a class="link">
-						<img src="/images/message.svg" alt="">
-						4
-					</a>
-					<span class="link">
-						<img src="/images/forums.svg" alt="">
-                        Category
-					</span>
-					<a class="link" href="/profile?nickname=">
-						<img src="/images/person.svg" alt="">
-						
-						nickname
-
-
-					</a>
-				</div>
+		<div class="blog-item">
+			<img class="blog-item--img" src="<%=blog.img %>" alt="">
+			<div class="blog-header">
+				<h3> <a href="blog-details?id="> <%=blog.title %> </a> </h3>
 			</div>
+			<p class="blog-desc">
+				<%=blog.description %>
+			</p>
+
+			<div class="blog-info">
+				<span class="link">
+					<img src="/images/date.svg" alt="">
+					<%=blog.date %>
+				</span>
+				<span class="link">
+					<img src="/images/visibility.svg" alt="">
+					21
+				</span>
+				<a class="link">
+					<img src="/images/message.svg" alt="">
+					4
+				</a>
+				<span class="link">
+					<img src="/images/forums.svg" alt="">
+					Category
+				</span>
+				<a class="link" href="/profile/<%=blog.author.nickname %>">
+					<img src="/images/person.svg" alt="">	
+					<%=blog.author.nickname %>
+				</a>
+			</div>
+		</div>
+
+
+
+		<%  
+		})
+		%>
 			<h3>0 blogs</h3>
 		
 

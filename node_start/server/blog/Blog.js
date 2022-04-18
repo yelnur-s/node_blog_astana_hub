@@ -7,7 +7,9 @@ const BlogSchema = new Schema({
   date: {
       type: Date,
       default: Date.now
-  }
+  },
+  img: String,
+  author: {type: Schema.Types.ObjectId, ref: "User"},
 });
 
 module.exports = mongoose.model("Blog", BlogSchema);
