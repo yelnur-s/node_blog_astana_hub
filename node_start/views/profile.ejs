@@ -15,8 +15,8 @@
 		<div class="page-header">
 			<h2>Мои блоги</h2>
 			<%
-						if(currentUser.nickname === nickname) {
-					%>
+				if(currentUser && currentUser.nickname === nickname) {
+			%>
 			<a class="button" href="/newblog">Новый блог</a>
 
 			<%
@@ -36,7 +36,7 @@
 					<h3> <a href="blog-details?id="> <%=blog.title %> </a> </h3>
 
 					<%
-						if(currentUser.nickname === nickname) {
+						if(currentUser && currentUser.nickname === nickname) {
 					%>
                     <span class="link">
                         <img src="/images/dots.svg" alt="">
@@ -72,7 +72,7 @@
 					</a>
 					<span class="link">
 						<img src="/images/forums.svg" alt="">
-                        Category
+                        <%=blog.category.name %>
 					</span>
 					<a class="link" href="/profile?nickname=">
 						<img src="/images/person.svg" alt="">

@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Детальная страница блога</title>
+    <%- include('partials/head.ejs') %>
+</head>
+<body data-authorid="<%=blog.author._id %>">
+
+
+    <%- include('partials/header.ejs') %>
+
+<section class="container page">
+	<div class="page-content">
+		<div class="blogs">
+			<div class="blog-item">
+				<img class="blog-item--img" src="<%=blog.img %>" alt="">
+
+                <div class="blog-info">
+					<span class="link">
+						<img src="/images/date.svg" alt="">
+						<%=moment(blog.date).fromNow() %>
+					</span>
+					<span class="link">
+						<img src="/images/visibility.svg" alt="">
+						21
+					</span>
+					<a class="link">
+						<img src="/images/message.svg" alt="">
+						4
+					</a>
+					<span class="link">
+						<img src="/images/forums.svg" alt="">
+						<%=blog.category.name %>
+					</span>
+					<a class="link">
+						<img src="/images/person.svg" alt="">
+						<%=blog.author.nickname %>
+					</a>
+				</div>
+
+				<div class="blog-header">
+					<h3><%=blog.title %></h3>
+				</div>
+				<p class="blog-desc">
+					<%=blog.description %>
+				</p>
+			</div>
+		</div>
+
+        <div class="comments" id="comments">
+        </div>
+
+		<%
+			if(typeof currentUser === 'object') {
+		%>
+
+		<span class="comment-add">
+			<textarea name="" class="comment-textarea" id="comment-text" placeholder="Введит текст комментария"></textarea>
+			<button class="button" id="add-comment">Отправить</button>
+		</span>
+
+		<%
+			} else {
+		%>
+
+		<span class="comment-warning">
+			Чтобы оставить комментарий <a href="register">зарегистрируйтесь</a> , или  <a href="login">войдите</a>  в аккаунт.
+		</span>
+
+
+		<%
+			}
+		%>
+	</div>
+	
+
+    <%- include('partials/categories.ejs') %>
+</section>	
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js"></script>
+	<script src="/js/comment.js"></script>
+
+</body>
+</html>

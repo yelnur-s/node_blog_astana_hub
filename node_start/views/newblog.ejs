@@ -20,9 +20,14 @@
 			</fieldset>
 
 			<fieldset class="fieldset">
-				<select name="category_id" id="" class="input">
-					<option value='1'>Category</option>
-
+				<select name="category" id="" class="input">
+					<% 
+						categories.forEach(category => {
+					%>
+					<option value='<%=category._id %>'> <%=category.name  %></option>
+					<%
+						})
+					%> 
 				</select>
 			</fieldset>
 			<!-- <input type="file" name="image">		 -->

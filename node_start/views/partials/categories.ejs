@@ -2,9 +2,16 @@
     <div class="page-header">
         <h2>Категории</h2>
     </div>
-    <a class='list-item' href=''> Category</a>
-    <a class='list-item' href=''> Category</a>
-    <a class='list-item' href=''> Category</a>
-    <a class='list-item' href=''> Category</a>
-    <a class='list-item' href=''> Category</a>   
+
+    <% 
+    
+        categories.forEach(category => {
+
+    %>
+
+    <a class='list-item' href='?category=<%=category.slug %>'> <%=category.name  %></a>
+    <%
+        })
+    %> 
+
 </div>

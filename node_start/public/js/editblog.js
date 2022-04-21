@@ -10,6 +10,7 @@ function onSubmit(form, e) {
     sendData.append("_id", form.elements._id.value)
     sendData.append("title", form.elements.title.value)
     sendData.append("description", form.elements.description.value)
+    sendData.append("category", form.elements.category.value)
     sendData.append("image", form.elements.image.files[0])
 
     axios({

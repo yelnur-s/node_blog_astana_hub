@@ -21,9 +21,20 @@
 				</fieldset>
 
 				<fieldset class="fieldset">
-					<select name="category_id" class="input" value="a">
-						<option value='a' selected> asd</option>
-                        <option value='b'> asdd</option>
+					<select name="category" class="input">
+						<% 
+							categories.forEach(category => {
+								if(category._id.equals(blog.category)) {
+						%>
+						<option value='<%=category._id %>' selected> <%=category.name  %></option>
+						<%
+							} else {
+						%>
+						<option value='<%=category._id %>'> <%=category.name  %></option>
+						<%
+							}
+							})
+						%> 
 					</select>
 				</fieldset class="fieldset">
 

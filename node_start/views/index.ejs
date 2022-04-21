@@ -22,7 +22,7 @@
 		<div class="blog-item">
 			<img class="blog-item--img" src="<%=blog.img %>" alt="">
 			<div class="blog-header">
-				<h3> <a href="blog-details?id="> <%=blog.title %> </a> </h3>
+				<h3> <a href="/details/<%=blog._id %>"> <%=blog.title %> </a> </h3>
 			</div>
 			<p class="blog-desc">
 				<%=blog.description %>
@@ -31,7 +31,7 @@
 			<div class="blog-info">
 				<span class="link">
 					<img src="/images/date.svg" alt="">
-					<%=blog.date %>
+					<%=moment(blog.date).fromNow() %>
 				</span>
 				<span class="link">
 					<img src="/images/visibility.svg" alt="">
@@ -43,7 +43,7 @@
 				</a>
 				<span class="link">
 					<img src="/images/forums.svg" alt="">
-					Category
+					<%=blog.category.name %>
 				</span>
 				<a class="link" href="/profile/<%=blog.author.nickname %>">
 					<img src="/images/person.svg" alt="">	
@@ -57,7 +57,40 @@
 		<%  
 		})
 		%>
+
+		<%
+			if(blogs.length === 0) {
+		%>
 			<h3>0 blogs</h3>
+		<%
+		}
+		%>
+
+
+		<%
+			if(currentPage !== 0){
+		%>
+				<a href="?page=<%=(currentPage - 1) %>"> prev </a>
+		<%
+		}
+		%>
+
+		<%
+			for(let i = 0; i < pages; i++) {
+		%>
+				<a href="?page=<%=i %>"> <%=(i+1) %> </a>
+		<%
+		}
+		%>
+
+		<%
+			if(currentPage !== pages - 1){
+		%>
+				<a href="?page=<%=(currentPage + 1) %>"> next </a>
+		<%
+		}
+		%>
+
 		
 
 		</div>
