@@ -13,6 +13,15 @@ function onSubmit(form, e) {
     sendData.append("category", form.elements.category.value)
     sendData.append("image", form.elements.image.files[0])
 
+
+    form.elements.tags.forEach(tag => {
+
+        if(tag.checked) {
+            sendData.append("tags[]", tag.value)
+        }
+
+    })
+
     axios({
         
         url: "/api/blogs/" + form.elements._id.value, 

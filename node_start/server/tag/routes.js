@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 
-const {createCategories} = require('./seed');
-createCategories();
+const {createTags} = require('./seed');
+createTags();
 
 
 // router.get('/api/categories', )

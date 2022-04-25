@@ -70,7 +70,7 @@
 		<%
 			if(currentPage !== 0){
 		%>
-				<a href="?page=<%=(currentPage - 1) %>"> prev </a>
+				<a href="?page=<%=(currentPage - 1) %><%=(locals.category ? ("&category=" + category) : "" )%><%=(locals.q ? ("&q=" + q) : "" )%>"> prev </a>
 		<%
 		}
 		%>
@@ -78,7 +78,7 @@
 		<%
 			for(let i = 0; i < pages; i++) {
 		%>
-				<a href="?page=<%=i %>"> <%=(i+1) %> </a>
+				<a href="?page=<%=i %><%=(locals.category ? ("&category=" + category) : "" )%><%=(locals.q ? ("&q=" + q) : "" )%>"> <%=(i+1) %> </a>
 		<%
 		}
 		%>
@@ -86,7 +86,7 @@
 		<%
 			if(currentPage !== pages - 1){
 		%>
-				<a href="?page=<%=(currentPage + 1) %>"> next </a>
+				<a href="?page=<%=(currentPage + 1) %><%=(locals.category ? ("&category=" + category) : "" )%><%=(locals.q ? ("&q=" + q) : "" )%>"> next </a>
 		<%
 		}
 		%>

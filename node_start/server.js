@@ -29,5 +29,6 @@ app.use(require('./server/blog/routes'))
 app.use(require('./server/auth/routes'))
 app.use(require('./server/category/routes'))
 app.use(require('./server/comment/routes'))
+app.use(require('./server/tag/routes'))
 
 app.listen(3000, () => console.log("Server is listening on port 3000"));

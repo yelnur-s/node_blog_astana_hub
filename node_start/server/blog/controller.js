@@ -10,13 +10,14 @@ const createBlog = async (req, res) => {
     if(req.file) {
         imagePath = "/images/blogs/" + req.file.filename
     }
-
+    console.log(req.body.tags)
     await new Blog({
         title: req.body.title,
         description: req.body.description,
         img: imagePath,
         author: req.user._id,
-        category: req.body.category
+        category: req.body.category,
+        tags: req.body.tags
     }).save();
 
     res.redirect('/profile/' + req.user.nickname);
@@ -58,6 +59,7 @@ const updateBlog = async (req, res) => {
         blog.description = req.body.description;
         blog.img = imagePath;
         blog.category = req.body.category;
+        blog.tags = req.body.tags
 
         await blog.save();
 
@@ -68,7 +70,8 @@ const updateBlog = async (req, res) => {
             $set: {
                 title: req.body.title, 
                 description: req.body.description,
-                category: req.body.category
+                category: req.body.category,
+                tags: req.body.tags,
             }
             }
         )

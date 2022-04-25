@@ -3,8 +3,10 @@ const router = express.Router();
 const {isAuth} = require('../auth/middlewares')
 const User = require('../user/User')
 const Blog = require('../blog/Blog')
+const Tag = require('../tag/Tag')
 const Category = require('../category/Category')
 const {getCategories} = require('../category/resources');
+const {getTags} = require('../tag/resources');
 
 router.get('/', async (req, res) => {
     let options = {};
@@ -12,22 +14,32 @@ router.get('/', async (req, res) => {
     const category = await Category.findOne({slug: req.query.category}).exec();
     if(category) {
         options.category = category._id
+        res.locals.category = category.slug
     }
+
+
     let page = 0;
     const limit = 3;
     if(req.query.page && typeof (req.query.page * 1) === 'number' && req.query.page * 1 >= 0) {
         page = req.query.page * 1;
+        res.locals.page = page
     }
 
+    if(req.query.q) {
+        options.$or = [{title: new RegExp(req.query.q, 'i')},{description: new RegExp(req.query.q, 'i')}]
+        res.locals.q = req.query.q
+    }
 
     const blogs = await Blog
     .find(options)
     .limit(limit)
     .skip(limit * page)
     .populate('author', 'nickname').populate('category', 'name').exec(); 
-    const totalBlogs = await Blog.count().exec();
+    
+    const totalBlogs = await Blog.count(options).exec();
 
     const categories = await getCategories();
+
     res.render("index.ejs", {
         currentUser: req.user,
         blogs,
@@ -52,8 +64,15 @@ router.get('/profile/:nickname', async (req, res) => {
 })
 
 router.get('/details/:id', async (req, res) => {
-    const blog = await Blog.findById(req.params.id).populate('category', 'name').populate('author', 'nickname').exec();
+    const blog = await Blog.findById(req.params.id)
+    .populate('category', 'name')
+    .populate('author', 'nickname')
+    .populate('tags')
+    .exec();
     const categories = await getCategories();
+
+    console.log(blog);
+
     res.render("blog-details.ejs", {
         blog,
         categories,
@@ -64,9 +83,11 @@ router.get('/details/:id', async (req, res) => {
 
 router.get('/newblog',isAuth,  async (req, res) => {
     const categories = await getCategories();
+    const tags = await getTags();
     res.render("newblog.ejs", {
         currentUser: req.user,
-        categories
+        categories,
+        tags
     })
 })
 
@@ -83,10 +104,12 @@ router.get('/register', (req, res) => {
 router.get('/editblog', isAuth,  async (req, res) => {
     const blog = await Blog.findById(req.query.id).exec();
     const categories = await getCategories();
+    const tags = await getTags();
     res.render("editblog.ejs", {
         blog,
         currentUser: req.user,
-        categories
+        categories,
+        tags
     });
 })
 

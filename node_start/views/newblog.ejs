@@ -42,6 +42,19 @@
 				<textarea class="input input-textarea" name="description" id="" cols="30" rows="10" placeholder="Описание"></textarea>
 			</fieldset>
 			<fieldset class="fieldset">
+				<%
+					tags.forEach((tag, index) => {
+				%>
+				<input type="checkbox" name="tags" value="<%=tag._id %>" id="tag-<%=index %>">
+				<label for="tag-<%=index %>"><%=tag.name %></label>	
+				<%
+
+				})
+				%>
+
+			</fieldset>
+
+			<fieldset class="fieldset">
 				<button class="button" type="submit">Сохранить</button>
 			</fieldset>
 			</form>

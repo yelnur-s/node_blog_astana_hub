@@ -48,6 +48,30 @@
 				<fieldset class="fieldset">
 					<textarea class="input input-textarea" name="description" id="" cols="30" rows="10" placeholder="Описание"><%=blog.description %></textarea>
 				</fieldset>
+
+				<%
+					tags.forEach((tag, index) => {
+				%>
+
+				<%
+					if(blog.tags.includes(tag._id)) {
+				%>
+				<input type="checkbox" name="tags" value="<%=tag._id %>" id="tag-<%=index %>" checked>
+				<%
+					} else {
+				%>
+				<input type="checkbox" name="tags" value="<%=tag._id %>" id="tag-<%=index %>">
+				<%
+					}
+				%>
+
+
+				<label for="tag-<%=index %>"><%=tag.name %></label>	
+				<%
+
+				})
+				%>
+
 				<fieldset class="fieldset">
 					<button class="button" type="submit">Сохранить</button>
 				</fieldset>

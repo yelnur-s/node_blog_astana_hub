@@ -38,7 +38,15 @@
 						<%=blog.author.nickname %>
 					</a>
 				</div>
-
+                <div class="tags">
+                    <% 
+                    blog.tags.forEach(tag => {
+                     %> 
+                    <a>  <%=tag.name %></a>
+                    <%
+                    })
+                    %>
+                </div>
 				<div class="blog-header">
 					<h3><%=blog.title %></h3>
 				</div>

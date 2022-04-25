@@ -8,6 +8,7 @@
 @import url('components/list.css');
 @import url('components/typography.css');
 @import url('components/comment.css');
+@import url('components/tag.css');
 @import url('components/pagination.css');
 @import url('pages/profile.css');
 @import url('pages/auth.css');

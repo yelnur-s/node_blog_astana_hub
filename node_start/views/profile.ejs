@@ -33,7 +33,7 @@
             <div class="blog-item">
 				<img class="blog-item--img" src="<%=blog.img %>" alt="">
 				<div class="blog-header">
-					<h3> <a href="blog-details?id="> <%=blog.title %> </a> </h3>
+					<h3> <a href="/details/<%=blog._id %>"> <%=blog.title %> </a> </h3>
 
 					<%
 						if(currentUser && currentUser.nickname === nickname) {

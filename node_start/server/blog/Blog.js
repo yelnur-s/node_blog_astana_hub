@@ -11,6 +11,7 @@ const BlogSchema = new Schema({
   img: String,
   author: {type: Schema.Types.ObjectId, ref: "User"},
   category: {type: Schema.Types.ObjectId, ref: "Category"},
+  tags: [{type: Schema.Types.ObjectId, ref: "Tag"}]
 });
 
 module.exports = mongoose.model("Blog", BlogSchema);
