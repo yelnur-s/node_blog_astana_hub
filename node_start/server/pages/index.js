@@ -91,6 +91,11 @@ router.get('/newblog',isAuth,  async (req, res) => {
     })
 })
 
+router.get('/:ln/login', (req, res) => {
+    if(req.user) return res.redirect('/profile/'+req.user.nickname)
+    res.render("login.ejs");
+})
+
 router.get('/login', (req, res) => {
     if(req.user) return res.redirect('/profile/'+req.user.nickname)
     res.render("login.ejs");

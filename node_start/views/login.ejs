@@ -9,17 +9,17 @@
 
 	<section class="container page">
 		<div class="auth-form">
-            <h1>Вход</h1>
+            <h1> <%=lnJSON[ln]["Вход"]%> </h1>
 			<form class="form" method="POST" action="/api/auth/signin">
                 <fieldset class="fieldset">
-                    <input class="input" type="text" name="email" placeholder="Введите email">
+                    <input class="input" type="text" name="email" placeholder="<%=lnJSON[ln]["Введите email"]%>">
                 </fieldset>
                 <fieldset class="fieldset">
-                    <input class="input" type="password" name="password" placeholder="Введите пароль">
+                    <input class="input" type="password" name="password" placeholder="<%=lnJSON[ln]["Введите пароль"]%>">
                 </fieldset>
 
                 <fieldset class="fieldset">
-                    <button class="button" type="submit">Войти</button>
+                    <button class="button" type="submit"><%=lnJSON[ln]["Войти"]%></button>
                 </fieldset>
 			</form>
 

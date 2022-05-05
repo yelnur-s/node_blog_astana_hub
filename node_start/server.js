@@ -4,6 +4,7 @@ const moment = require('moment');
 const passport = require("passport");
 require('./server/config/db');
 require('./server/config/passport');
+const lnJSON = require('./server/config/language/index.json')
 
 const {mongooseStore} = require('./server/config/session')
 
@@ -19,6 +20,29 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
     res.locals.moment = moment;
+    res.locals.ln = "ru";
+    res.locals.lnJSON = lnJSON;
+    let urlpath = req.url;
+
+    // "/login".split("/");
+    // ["", "login"]
+    // "/kz/login"
+    // ["", "kz", "login"]
+    let dash = req.url.split("/");
+    if(dash.length >= 2) {
+        let code = dash[1];
+        if(code !== '' && lnJSON.hasOwnProperty(code)) {
+            res.locals.ln = code;
+            dash.shift()
+            dash.shift()
+            urlpath = "/" + dash.join('/')
+        }
+    } 
+
+    res.locals.toRu = urlpath
+    res.locals.toEn = "/en" +  urlpath
+    res.locals.toKz = "/kz" +  urlpath
+
     next();
 })
 
